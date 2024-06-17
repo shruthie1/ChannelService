@@ -10,7 +10,7 @@ import { ActiveChannel } from './schemas/active-channel.schema';
 export class ActiveChannelsService {
   constructor(
     @InjectModel(ActiveChannel.name) private activeChannelModel: Model<ActiveChannel>,
-  ) {}
+  ) { }
 
   async create(createActiveChannelDto: CreateActiveChannelDto): Promise<ActiveChannel> {
     const createdChannel = new this.activeChannelModel(createActiveChannelDto);
@@ -83,11 +83,10 @@ export class ActiveChannelsService {
       throw new NotFoundException(`Chat group with ID ${channelId} not found`);
     }
     const reactionIndex = channel.reactions.indexOf(reaction);
-    if (reactionIndex === -1) {
-      throw new NotFoundException(`Reaction not found in the chat group`);
+    if (reactionIndex !== -1) {
+      channel.reactions.splice(reactionIndex, 1);
+      await channel.save();
     }
-    channel.reactions.splice(reactionIndex, 1);
-    await channel.save();
     return channel;
   }
 }
