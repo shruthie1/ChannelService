@@ -46,7 +46,4 @@ export class CreateActiveChannelDto {
 
   @ApiProperty({ default: true })
   megagroup: boolean;
-
-  @ApiProperty({ default: 0 })
-  rpm: number;
 }

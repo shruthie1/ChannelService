@@ -35,7 +35,6 @@ export class ActiveChannelsController {
   @ApiQuery({ name: 'reactions', required: false, type: [String] })
   @ApiQuery({ name: 'banned', required: false, type: Boolean })
   @ApiQuery({ name: 'megagroup', required: false, type: Boolean })
-  @ApiQuery({ name: 'rpm', required: false, type: Number })
   search(@Query() query: any): Promise<ActiveChannel[]> {
     console.log(query);
     return this.activeChannelsService.search(query);
