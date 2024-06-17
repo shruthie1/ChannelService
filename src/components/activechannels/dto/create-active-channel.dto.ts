@@ -11,14 +11,17 @@ export class CreateActiveChannelDto {
   @ApiProperty({ default: true })
   canSendMsgs: boolean;
 
-  @ApiProperty({ default: 0 })
+  @ApiProperty({ default: 300 })
   participantsCount: number;
 
   @ApiProperty({ default: false })
   restricted: boolean;
 
-  @ApiProperty({ default: false })
+  @ApiProperty({ default: true })
   sendMessages: boolean;
+
+  @ApiProperty({ default: false })
+  reactRestriction: boolean;
 
   @ApiProperty()
   title: string;
