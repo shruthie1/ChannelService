@@ -21,7 +21,7 @@ export class CreateActiveChannelDto {
   sendMessages: boolean;
 
   @ApiProperty({ default: false })
-  reactRestriction: boolean;
+  reactRestricted: boolean;
 
   @ApiProperty()
   title: string;

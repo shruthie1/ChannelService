@@ -47,7 +47,7 @@ export class ActiveChannel extends Document {
   megagroup: boolean;
 
   @Prop({ default: false })
-  reactRestriction: boolean;
+  reactRestricted: boolean;
 }
 
 export const ActiveChannelSchema = SchemaFactory.createForClass(ActiveChannel);
