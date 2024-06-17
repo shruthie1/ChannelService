@@ -76,4 +76,18 @@ export class ActiveChannelsService {
     const randomIndex = Math.floor(Math.random() * channel.reactions.length);
     return channel.reactions[randomIndex];
   }
+
+  async removeReaction(channelId: string, reaction: string): Promise<ActiveChannel> {
+    const channel = await this.activeChannelModel.findOne({ channelId }).exec();
+    if (!channel) {
+      throw new NotFoundException(`Chat group with ID ${channelId} not found`);
+    }
+    const reactionIndex = channel.reactions.indexOf(reaction);
+    if (reactionIndex === -1) {
+      throw new NotFoundException(`Reaction not found in the chat group`);
+    }
+    channel.reactions.splice(reactionIndex, 1);
+    await channel.save();
+    return channel;
+  }
 }

@@ -86,4 +86,13 @@ export class ActiveChannelsController {
   getRandomReaction(@Param('channelId') channelId: string): Promise<string> {
     return this.activeChannelsService.getRandomReaction(channelId);
   }
+
+  @Delete(':channelId/reactions')
+  @ApiOperation({ summary: 'Remove reaction from chat group' })
+  removeReaction(@Param('channelId') channelId: string, @Body() addReactionDto: AddReactionDto): Promise<ActiveChannel> {
+    if (!addReactionDto.reaction) {
+      throw new BadRequestException('Reaction is required');
+    }
+    return this.activeChannelsService.removeReaction(channelId, addReactionDto.reaction);
+  }
 }
