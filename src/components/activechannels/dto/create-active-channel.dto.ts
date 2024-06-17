@@ -11,9 +11,6 @@ export class CreateActiveChannelDto {
   @ApiProperty({ default: true })
   canSendMsgs: boolean;
 
-  @ApiProperty()
-  id: string;
-
   @ApiProperty({ default: 0 })
   participantsCount: number;
 

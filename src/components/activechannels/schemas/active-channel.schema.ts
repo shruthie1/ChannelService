@@ -13,9 +13,6 @@ export class ActiveChannel extends Document {
   @Prop({ default: true })
   canSendMsgs: boolean;
 
-  @Prop({ required: true })
-  id: string;
-
   @Prop({ type: mongoose.Schema.Types.Number, default: 0 })
   participantsCount: number;
 

@@ -24,7 +24,6 @@ export class ActiveChannelsController {
   @ApiQuery({ name: 'channelId', required: false, type: String })
   @ApiQuery({ name: 'broadcast', required: false, type: Boolean })
   @ApiQuery({ name: 'canSendMsgs', required: false, type: Boolean })
-  @ApiQuery({ name: 'id', required: false, type: String })
   @ApiQuery({ name: 'participantsCount', required: false, type: Number })
   @ApiQuery({ name: 'restricted', required: false, type: Boolean })
   @ApiQuery({ name: 'sendMessages', required: false, type: Boolean })
