@@ -75,10 +75,10 @@ export class ActiveChannelsController {
   @Post(':channelId/reactions')
   @ApiOperation({ summary: 'Add reaction to chat group' })
   addReaction(@Param('channelId') channelId: string, @Body() addReactionDto: AddReactionDto): Promise<ActiveChannel> {
-    if (!addReactionDto.reaction) {
+    if (!addReactionDto.reactions) {
       throw new BadRequestException('Reaction is required');
     }
-    return this.activeChannelsService.addReaction(channelId, addReactionDto.reaction);
+    return this.activeChannelsService.addReactions(channelId, addReactionDto.reactions);
   }
 
   @Get(':channelId/reactions/random')
@@ -90,9 +90,9 @@ export class ActiveChannelsController {
   @Delete(':channelId/reactions')
   @ApiOperation({ summary: 'Remove reaction from chat group' })
   removeReaction(@Param('channelId') channelId: string, @Body() addReactionDto: AddReactionDto): Promise<ActiveChannel> {
-    if (!addReactionDto.reaction) {
+    if (!addReactionDto.reactions) {
       throw new BadRequestException('Reaction is required');
     }
-    return this.activeChannelsService.removeReaction(channelId, addReactionDto.reaction);
+    return this.activeChannelsService.removeReaction(channelId, addReactionDto.reactions[0]);
   }
 }

@@ -53,15 +53,19 @@ export class ActiveChannelsService {
     return this.activeChannelModel.find(filter).exec();
   }
 
-  async addReaction(channelId: string, reaction: string): Promise<ActiveChannel> {
+  async addReactions(channelId: string, reactions: string[]): Promise<ActiveChannel> {
     const channel = await this.activeChannelModel.findOne({ channelId }).exec();
     if (!channel) {
       throw new NotFoundException(`Chat group with ID ${channelId} not found`);
     }
-    if (!channel.reactions.includes(reaction)) {
-      channel.reactions.push(reaction);
-      await channel.save();
+  
+    for (const reaction of reactions) {
+      if (!channel.reactions.includes(reaction)) {
+        channel.reactions.push(reaction);
+      }
     }
+  
+    await channel.save();
     return channel;
   }
 
