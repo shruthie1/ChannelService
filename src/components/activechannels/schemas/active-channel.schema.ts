@@ -25,7 +25,7 @@ export class ActiveChannel extends Document {
   @Prop({ required: true })
   title: string;
 
-  @Prop({ required: true })
+  @Prop({ required: false , default: null})
   username: string;
 
   @Prop({ type: mongoose.Schema.Types.Number, default: 0 })
